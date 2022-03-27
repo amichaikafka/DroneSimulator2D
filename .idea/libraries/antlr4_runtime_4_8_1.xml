@@ -1,0 +1,17 @@
+<component name="libraryTable">
+  <library name="antlr4-runtime-4.8-1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/libs/antlr4-runtime-4.8-1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/commons-lang3-3.9.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/commons-text-1.8.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/jgrapht-core-1.5.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/jgrapht-demo-1.5.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/jgrapht-ext-1.5.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/jgrapht-io-1.5.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/jgraphx-4.1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/jheaps-0.13.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
