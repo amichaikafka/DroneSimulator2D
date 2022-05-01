@@ -1,4 +1,4 @@
-import java.awt.EventQueue;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -28,14 +28,15 @@ public class SimulationWindow {
 	public static JLabel info_label;
 	public static boolean return_home = false;
 	boolean toogleStop = true;
+	private Dimension screenSize=Toolkit.getDefaultToolkit().getScreenSize();;
 	private void initialize() {
 		frame = new JFrame();
 		frame.setSize(1800,700);
 		frame.setTitle("Drone Simulator");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
-		
+		screenSize=Toolkit.getDefaultToolkit().getScreenSize();
+//		this.setSize(screenSize.width/2,screenSize.height/2);
 		
 		/*
 		 * Stop\Resume
@@ -54,7 +55,7 @@ public class SimulationWindow {
 				  toogleStop = !toogleStop;
 			  }
 		});
-		stopBtn.setBounds(1300, 0, 170, 50);
+		stopBtn.setBounds(screenSize.width-200, 50, 100, 30);
 		frame.getContentPane().add(stopBtn);
 		/*
 		 * Speeds
@@ -69,7 +70,7 @@ public class SimulationWindow {
 				  algo1.speedUp();
 			  }
 		});
-		speedBtn1.setBounds(1300, 100, 100, 50);
+		speedBtn1.setBounds(screenSize.width-250, 100, 100, 30);
 		frame.getContentPane().add(speedBtn1);
 		
 		JButton speedBtn2 = new JButton("speedDown");
@@ -80,7 +81,7 @@ public class SimulationWindow {
 				  algo1.speedDown();
 			  }
 		});
-		speedBtn2.setBounds(1400, 100, 100, 50);
+		speedBtn2.setBounds(screenSize.width-150, 100, 100, 30);
 		frame.getContentPane().add(speedBtn2);
 		
 		/*
@@ -95,7 +96,7 @@ public class SimulationWindow {
 				  algo1.spinBy(180);
 			  }
 		});
-		spinBtn1.setBounds(1300, 200, 100, 50);
+		spinBtn1.setBounds(screenSize.width-250, 150, 80, 30);
 		frame.getContentPane().add(spinBtn1);
 		
 		JButton spinBtn2 = new JButton("spin90");
@@ -106,7 +107,7 @@ public class SimulationWindow {
 				  algo1.spinBy(90);
 			  }
 		});
-		spinBtn2.setBounds(1400, 200, 100, 50);
+		spinBtn2.setBounds(screenSize.width-170, 150, 80, 30);
 		frame.getContentPane().add(spinBtn2);
 		
 		JButton spinBtn3 = new JButton("spin60");
@@ -117,7 +118,7 @@ public class SimulationWindow {
 				  algo1.spinBy(60);
 			  }
 		});
-		spinBtn3.setBounds(1500, 200, 100, 50);
+		spinBtn3.setBounds(screenSize.width-90, 150, 80, 30);
 		frame.getContentPane().add(spinBtn3);
 		
 		JButton spinBtn4 = new JButton("spin45");
@@ -128,7 +129,7 @@ public class SimulationWindow {
 				  algo1.spinBy(60);
 			  }
 		});
-		spinBtn4.setBounds(1300, 300, 100, 50);
+		spinBtn4.setBounds(screenSize.width-250, 200, 80, 30);
 		frame.getContentPane().add(spinBtn4);
 		
 		JButton spinBtn5 = new JButton("spin30");
@@ -139,7 +140,7 @@ public class SimulationWindow {
 				  algo1.spinBy(30);
 			  }
 		});
-		spinBtn5.setBounds(1400, 300, 100, 50);
+		spinBtn5.setBounds(screenSize.width-170, 200, 80, 30);
 		frame.getContentPane().add(spinBtn5);
 		
 		JButton spinBtn6 = new JButton("spin-30");
@@ -150,7 +151,7 @@ public class SimulationWindow {
 				  algo1.spinBy(-30);
 			  }
 		});
-		spinBtn6.setBounds(1500, 300, 100, 50);
+		spinBtn6.setBounds(screenSize.width-90, 200, 80, 30);
 		frame.getContentPane().add(spinBtn6);
 		
 		JButton spinBtn7 = new JButton("spin-45");
@@ -161,7 +162,7 @@ public class SimulationWindow {
 				  algo1.spinBy(-45);
 			  }
 		});
-		spinBtn7.setBounds(1600, 300, 100, 50);
+		spinBtn7.setBounds(screenSize.width-250, 250, 80, 30);
 		frame.getContentPane().add(spinBtn7);
 		
 		JButton spinBtn8 = new JButton("spin-60");
@@ -172,7 +173,7 @@ public class SimulationWindow {
 				  algo1.spinBy(-60);
 			  }
 		});
-		spinBtn8.setBounds(1700, 300, 100, 50);
+		spinBtn8.setBounds(screenSize.width-170, 250, 80, 30);
 		frame.getContentPane().add(spinBtn8);
 		
 		/*
@@ -187,7 +188,7 @@ public class SimulationWindow {
 				  toogleRealMap = !toogleRealMap;
 			  }
 		});
-		toogleMapBtn.setBounds(1300, 400, 120, 50);
+		toogleMapBtn.setBounds(screenSize.width-250, 300, 120, 30);
 		frame.getContentPane().add(toogleMapBtn);
 		
 		/*
@@ -202,7 +203,7 @@ public class SimulationWindow {
 				  toogleAI = !toogleAI;
 			  }
 		});
-		toogleAIBtn.setBounds(1400, 400, 120, 50);
+		toogleAIBtn.setBounds(screenSize.width-130, 300, 120, 30);
 		frame.getContentPane().add(toogleAIBtn);
 		
 		/*
@@ -225,7 +226,7 @@ public class SimulationWindow {
 					});
 			  }
 		});
-		returnBtn.setBounds(1500, 400, 120, 50);
+		returnBtn.setBounds(screenSize.width-250, 350, 120, 30);
 		frame.getContentPane().add(returnBtn);
 		
 		JButton Graph = new JButton("Open Graph");
@@ -236,7 +237,7 @@ public class SimulationWindow {
 				  algo1.mGraph.drawGraph();
 			  }
 		});
-		Graph.setBounds(1600, 400, 120, 50);
+		Graph.setBounds(screenSize.width-130, 350, 120, 30);
 		frame.getContentPane().add(Graph);
 		
 		/*
@@ -267,7 +268,7 @@ public class SimulationWindow {
 	
 	
 	public void main() {
-		int map_num = 5;
+		int map_num = 1;
 		Point[] startPoints = {
 				new Point(100,50),
 				new Point(50,60),
