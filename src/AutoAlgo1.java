@@ -58,6 +58,7 @@ public class AutoAlgo1 {
 
 	
 	public void update(int deltaTime) {
+		System.out.println("aaaaaaaaaaaaaaaa   "+deltaTime);
 		updateVisited();
 		updateMapByLidars();
 		
@@ -247,12 +248,15 @@ public class AutoAlgo1 {
 	
 	Point init_point;
 	public void ai(int deltaTime) {
+		System.out.println("_____________");
 		if(!SimulationWindow.toogleAI) {
+			System.out.println("12345678");
 			return;
 		}
 	
 		
 		if(is_init) {
+			System.out.println("amichai");
 			speedUp();
 			Point dronePoint = drone.getOpticalSensorLocation();
 			init_point = new Point(dronePoint);
@@ -270,10 +274,13 @@ public class AutoAlgo1 {
 
 		
 		if(SimulationWindow.return_home) {
-			
+			System.out.println("liav");
 			if( Tools.getDistanceBetweenPoints(getLastPoint(), dronePoint) <  max_distance_between_points) {
 				if(points.size() <= 1 && Tools.getDistanceBetweenPoints(getLastPoint(), dronePoint) <  max_distance_between_points/5) {
 					speedDown();
+					System.out.println("omer");
+					SimulationWindow.return_home=false;
+					SimulationWindow.toogleAI=false;
 				} else {
 					removeLastPoint();
 				}
