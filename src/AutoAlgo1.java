@@ -263,7 +263,7 @@ public class AutoAlgo1 {
 			}
 			if (t!=0){
 				int m=points.size();
-				if (m-t>=10) {
+				if (m-t>=8) {
 					System.out.println(t);
 					for (int i = t + 1; i < m; i++) {
 						removeLastPoint();
@@ -313,16 +313,16 @@ public class AutoAlgo1 {
 					System.out.println("omer");
 					SimulationWindow.return_home=false;
 					SimulationWindow.toogleAI=false;
-				}// else {
+				} else {
 //
 //
 ////					speedDown();
 ////					spinBy((360-(int)drone.getGyroRotation())+dronePoint.getAngle(getLastPoint()));
 ////					System.out.println((360-(int)drone.getGyroRotation())+dronePoint.getAngle(getLastPoint()));
 ////					System.out.println((int)drone.getGyroRotation());
-////					removeLastPoint();
+					removeLastPoint();
 ////					speedUp();
-//				}
+				}
 			}
 		} else {
 			if( Tools.getDistanceBetweenPoints(getLastPoint(), dronePoint) >=  max_distance_between_points) {
