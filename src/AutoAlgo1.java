@@ -152,50 +152,7 @@ public class AutoAlgo1 {
 			map[xi][yi] = state; 
 		}
 	}
-	/*
-	
-	public void fineEdges(int x,int y) {
-		int radius = 6;
-		
-		for(int i=y-radius;i<y+radius;i++) {
-			for(int j=x-radius;j<x+radius;j++) {
-				if(Math.abs(y-i) <= 1 && Math.abs(x-j) <= 1) {
-					continue;
-				}
-				if(map[i][j] == PixelState.blocked) {
-					blockLine(x,y,j,i);
-				}
-			}
-		}
-	}
-	*/
-	/*
-	public void blockLine(int x0,int y0,int x1,int y1) {
-		if(x0 > x1) {
-			int tempX = x0;
-			int tempY = y0;
-			x0 = x1;
-			y0 = y1;
-			x1 = tempX;
-			y1 = tempY;
-		}
-		
-	     double deltax = x1 - x0;
-	     double deltay = y1 - y0;
-	     double deltaerr = Math.abs(deltay / deltax);    // Assume deltax != 0 (line is not vertical),
-	     double error = 0.0; // No error at start
-	     int y = y0;
-	     for (int x=x0;x<x1;x++) {
-	    	 setPixel(x,y,PixelState.blocked);
-	         error = error + deltaerr;
-	         if( 2*error >= deltax ) {
-                y = y + 1;
-                error=error - deltax;
-	        }
-	     }
-	
-	}
-	*/
+
 	
 	public void paintBlindMap(Graphics g) {
 		Color c = g.getColor();
@@ -348,10 +305,6 @@ public class AutoAlgo1 {
 				} else {
 //
 //
-////					speedDown();
-////					spinBy((360-(int)drone.getGyroRotation())+dronePoint.getAngle(getLastPoint()));
-////					System.out.println((360-(int)drone.getGyroRotation())+dronePoint.getAngle(getLastPoint()));
-////					System.out.println((int)drone.getGyroRotation());
 					removeLastPoint();
 ////					speedUp();
 				}
@@ -360,9 +313,6 @@ public class AutoAlgo1 {
 			if( Tools.getDistanceBetweenPoints(getLastPoint(), dronePoint) >=  max_distance_between_points) {
 				points.add(dronePoint);
 				mGraph.addVertex(dronePoint);
-//				if(points.size()>1) {
-//					mGraph.shortestPath(dronePoint, points.get(0));
-//				}
 			}
 		}
 
@@ -385,7 +335,7 @@ public class AutoAlgo1 {
 			is_risky = true;
 		}
 
-//		if (!SimulationWindow.return_home) {
+
 			if (!is_risky) {
 
 				if (SimulationWindow.return_home) {
@@ -399,10 +349,9 @@ public class AutoAlgo1 {
 			} else {
 				if (!try_to_escape) {
 					try_to_escape = true;
-//					Lidar right = drone.lidars.get(1);
+
 					double a = right.current_distance;
-//
-//					Lidar left = drone.lidars.get(2);
+
 					double b = left.current_distance;
 
 
@@ -440,8 +389,6 @@ public class AutoAlgo1 {
 							spin_by *= (-1);
 						}
 					} else {
-
-
 						if (a < b) {
 							spin_by *= (-1);
 						}
@@ -449,12 +396,11 @@ public class AutoAlgo1 {
 					if (SimulationWindow.return_home) {
 						if(!points.isEmpty()) {
 							double rotation = Tools.getRotationBetweenPoints(dronePoint, getLastPoint());
-							if (!(rotation >= -90 && rotation <= 90))
+							if (!(rotation >= -90 && rotation <= 90)) {
 								spin_by += -1;
+							}
 						}
 					}
-
-
 					spinBy(spin_by, true, new Func() {
 						@Override
 						public void method() {
@@ -464,7 +410,7 @@ public class AutoAlgo1 {
 					});
 				}
 			}
-//		}
+
 			
 		//}
 	}
