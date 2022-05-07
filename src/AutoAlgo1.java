@@ -263,8 +263,11 @@ public class AutoAlgo1 {
 			}
 			if (t!=0){
 				int m=points.size();
-				for (int i = t+1; i <m ; i++) {
-					removeLastPoint();
+				if (m-t>=10) {
+					System.out.println(t);
+					for (int i = t + 1; i < m; i++) {
+						removeLastPoint();
+					}
 				}
 			}
 		}
@@ -349,10 +352,10 @@ public class AutoAlgo1 {
 		if (left.current_distance <= max_risky_distance / 3) {
 			is_risky = true;
 		}
-		if (risky_dis != 0.0 &&
-				(( right.current_distance  < ((drone.getSpeed() * 80) / WorldParams.max_speed)) && (left.current_distance < ((drone.getSpeed() * 80) / WorldParams.max_speed))) ||
-				(forward.current_distance < ((drone.getSpeed() * 150) / WorldParams.max_speed)))
-			if (drone.getSpeed() != WorldParams.min_speed) speedDown();
+//		if (risky_dis != 0.0 &&
+//				(( right.current_distance  < ((drone.getSpeed() * 80) / WorldParams.max_speed)) && (left.current_distance < ((drone.getSpeed() * 80) / WorldParams.max_speed))) ||
+//				(forward.current_distance < ((drone.getSpeed() * 150) / WorldParams.max_speed)))
+//			if (drone.getSpeed() != WorldParams.min_speed) speedDown();
 //		if (!SimulationWindow.return_home) {
 			if (!is_risky) {
 
@@ -414,13 +417,13 @@ public class AutoAlgo1 {
 							spin_by *= (-1);
 						}
 					}
-//					if (SimulationWindow.return_home) {
-//						if(!points.isEmpty()) {
-//							double rotation = Tools.getRotationBetweenPoints(dronePoint, getLastPoint());
-//							if (!(rotation >= -90 && rotation <= 90))
-//								spin_by += -1;
-//						}
-//					}
+					if (SimulationWindow.return_home) {
+						if(!points.isEmpty()) {
+							double rotation = Tools.getRotationBetweenPoints(dronePoint, getLastPoint());
+							if (!(rotation >= -90 && rotation <= 90))
+								spin_by += -1;
+						}
+					}
 
 
 					spinBy(spin_by, true, new Func() {
