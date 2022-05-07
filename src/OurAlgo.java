@@ -2,7 +2,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
-public class AutoAlgo1 {
+public class OurAlgo {
 	
 	int map_size = 3000;
 	enum PixelState {blocked,explored,unexplored,visited}
@@ -23,7 +23,7 @@ public class AutoAlgo1 {
 	Graph mGraph = new Graph();
 	
 	CPU ai_cpu;
-	public AutoAlgo1(Map realMap) {
+	public OurAlgo(Map realMap) {
 		degrees_left = new ArrayList<>();
 		degrees_left_func =  new ArrayList<>();
 		points = new ArrayList<Point>();
@@ -60,12 +60,11 @@ public class AutoAlgo1 {
 
 	
 	public void update(int deltaTime) {
-//		System.out.println("aaaaaaaaaaaaaaaa   "+deltaTime);
+
 		updateVisited();
 		updateMapByLidars();
 
 		ai(deltaTime);
-		System.out.println(getTime());
 		if(start!=0&&getTime()==4){
 			System.out.println(getTime());
 			SimulationWindow.return_home=true;
@@ -259,13 +258,12 @@ public class AutoAlgo1 {
 	public void ai(int deltaTime) {
 //		System.out.println("_____________");
 		if(!SimulationWindow.toogleAI) {
-			System.out.println("12345678");
 			return;
 		}
 	
 		
 		if(is_init) {
-			System.out.println("amichai");
+
 			speedUp();
 			Point dronePoint = drone.getOpticalSensorLocation();
 			init_point = new Point(dronePoint);
@@ -289,12 +287,11 @@ public class AutoAlgo1 {
 
 
 		if(SimulationWindow.return_home) {
-//			System.out.println("liav");
-//			spinBy(dronePoint.getAngle(getLastPoint()));
+
 			if( Tools.getDistanceBetweenPoints(getLastPoint(), dronePoint) <  35) {
 				if(points.size() <= 1 && Tools.getDistanceBetweenPoints(getLastPoint(), dronePoint) <  35) {
 					speedDown();
-					System.out.println("omer");
+
 					SimulationWindow.return_home=false;
 					SimulationWindow.toogleAI=false;
 					SimulationWindow.backHome=true;

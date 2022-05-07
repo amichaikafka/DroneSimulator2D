@@ -279,7 +279,7 @@ public class SimulationWindow {
 	public static boolean toogleRealMap = true;
 	public static boolean toogleAI = false;
 	
-	public static AutoAlgo1 algo1;
+	public static OurAlgo algo1;
 	
 	
 	public void main() {
@@ -293,7 +293,7 @@ public class SimulationWindow {
 		
 		Map map = new Map(".\\Maps\\p1" + map_num + ".png",startPoints[map_num-1]);
 		
-		algo1 = new AutoAlgo1(map);
+		algo1 = new OurAlgo(map);
 		
 		Painter painter = new Painter(algo1);
 		painter.setBounds(0, 0, 2000, 2000);
