@@ -11,6 +11,7 @@ public class AutoAlgo1 {
 	Point droneStartingPoint;
 	
 	ArrayList<Point> points;
+	long start =0;
 	
 	
 	int isRotating;
@@ -41,6 +42,7 @@ public class AutoAlgo1 {
 	}
 	
 	public void initMap() {
+
 		map = new PixelState[map_size][map_size];
 		for(int i=0;i<map_size;i++) {
 			for(int j=0;j<map_size;j++) {
@@ -61,9 +63,33 @@ public class AutoAlgo1 {
 //		System.out.println("aaaaaaaaaaaaaaaa   "+deltaTime);
 		updateVisited();
 		updateMapByLidars();
-		
+
 		ai(deltaTime);
-		
+		System.out.println(getTime());
+		if(start!=0&&getTime()==4){
+			System.out.println(getTime());
+			SimulationWindow.return_home=true;
+			SimulationWindow.backHome=false;
+			SimulationWindow.lowBattery=true;
+			removeNonRelevant();
+			speedDown();
+			spinBy((360-(int)drone.getGyroRotation())+drone.getOpticalSensorLocation().getAngle(getLastPoint()), true, new Func() {
+				@Override
+				public void method() {
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException interruptedException) {
+						interruptedException.printStackTrace();
+					}
+					speedUp();
+				}
+			});
+		}else if (start!=0&&getTime()>=8) {
+			SimulationWindow.lowBattery=true;
+			System.out.println("Low battery");
+			SimulationWindow.toogleStop=true;
+			System.exit(0);
+		}
 		
 		if(isRotating != 0) {
 			updateRotating(deltaTime);
@@ -289,6 +315,7 @@ public class AutoAlgo1 {
 			points.add(dronePoint);
 			mGraph.addVertex(dronePoint);
 			is_init = false;
+			start= System.currentTimeMillis();
 		}
 		Point dronePoint = drone.getOpticalSensorLocation();
 		if(goHomeFirst){
@@ -313,6 +340,11 @@ public class AutoAlgo1 {
 					System.out.println("omer");
 					SimulationWindow.return_home=false;
 					SimulationWindow.toogleAI=false;
+					SimulationWindow.backHome=true;
+					CPU.stopAllCPUS();
+
+					SimulationWindow.updteHome();
+
 				} else {
 //
 //
@@ -352,10 +384,7 @@ public class AutoAlgo1 {
 		if (left.current_distance <= max_risky_distance / 3) {
 			is_risky = true;
 		}
-//		if (risky_dis != 0.0 &&
-//				(( right.current_distance  < ((drone.getSpeed() * 80) / WorldParams.max_speed)) && (left.current_distance < ((drone.getSpeed() * 80) / WorldParams.max_speed))) ||
-//				(forward.current_distance < ((drone.getSpeed() * 150) / WorldParams.max_speed)))
-//			if (drone.getSpeed() != WorldParams.min_speed) speedDown();
+
 //		if (!SimulationWindow.return_home) {
 			if (!is_risky) {
 
@@ -579,6 +608,14 @@ public class AutoAlgo1 {
 		Point p1 = points.get(points.size()-1);
 		Point p2 = points.get(points.size()-2);
 		return new Point((p1.x + p2.x) /2, (p1.y + p2.y) /2);
+	}
+
+	public long getTime(){
+		long finish = System.currentTimeMillis();
+
+		return (int)((finish - start)/1000)/60;
+
+
 	}
 	
 

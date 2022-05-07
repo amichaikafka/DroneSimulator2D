@@ -26,8 +26,11 @@ public class SimulationWindow {
 	}
 
 	public static JLabel info_label;
+	public static JLabel battery_label;
 	public static boolean return_home = false;
-	boolean toogleStop = true;
+	public static boolean backHome=false;
+	public static boolean lowBattery=false;
+	public static boolean toogleStop = true;
 	private Dimension screenSize=Toolkit.getDefaultToolkit().getScreenSize();
 	private void initialize() {
 		frame = new JFrame();
@@ -217,6 +220,7 @@ public class SimulationWindow {
 			  public void actionPerformed(ActionEvent e)
 			  {
 				  return_home = !return_home;
+				  backHome=false;
 				  algo1.removeNonRelevant();
 				  algo1.speedDown();
 //				  algo1.goHomeFirst=!algo1.goHomeFirst;
@@ -255,6 +259,10 @@ public class SimulationWindow {
 		info_label = new JLabel();
 		info_label.setBounds(1300, 500, 300, 200);
 		frame.getContentPane().add(info_label);
+
+		battery_label = new JLabel();
+		battery_label.setBounds(500, 500, 500, 500);
+		frame.getContentPane().add(battery_label);
 		
 		/*
 		 * Info label 
@@ -304,6 +312,10 @@ public class SimulationWindow {
 		CPU infoCPU = new CPU(6,"update_info");
 		infoCPU.addFunction(this::updateInfo);
 		infoCPU.play();
+
+		CPU batteryCPU = new CPU(6,"battery");
+		batteryCPU.addFunction(this::updateInfoBattery);
+		batteryCPU.play();
 	}
 	
 	public void updateInfo(int deltaTime) {
@@ -311,6 +323,18 @@ public class SimulationWindow {
 		info_label2.setText("<html>" + String.valueOf(algo1.counter) + " <BR>isRisky:" + String.valueOf(algo1.is_risky) + 
 				"<BR>" + String.valueOf(algo1.risky_dis) + "</html>");
 		
+	}
+	public void updateInfoBattery(int deltaTime) {
+		if(lowBattery) {
+			battery_label.setText("Low battery");
+			JOptionPane.showMessageDialog(null, "Low battery - return home", "", JOptionPane.WIDTH);
+		}
+	}
+	public static void updteHome() {
+		if(backHome) {
+			JOptionPane.showMessageDialog(null, "Arrived home", "", JOptionPane.WIDTH);
+			backHome=false;
+		}
 	}
 	
 	public void stopCPUS() {
@@ -320,4 +344,5 @@ public class SimulationWindow {
 	public void resumseCPUS() {
 		CPU.stopAllCPUS();
 	}
+
 }
