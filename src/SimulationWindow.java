@@ -28,7 +28,7 @@ public class SimulationWindow {
 	public static JLabel info_label;
 	public static boolean return_home = false;
 	boolean toogleStop = true;
-	private Dimension screenSize=Toolkit.getDefaultToolkit().getScreenSize();;
+	private Dimension screenSize=Toolkit.getDefaultToolkit().getScreenSize();
 	private void initialize() {
 		frame = new JFrame();
 		frame.setSize(1800,700);
@@ -217,13 +217,20 @@ public class SimulationWindow {
 			  public void actionPerformed(ActionEvent e)
 			  {
 				  return_home = !return_home;
-				  algo1.speedDown();
-				  algo1.spinBy(180, true, new Func() {
-						@Override
-						public void method() {
-							algo1.speedUp();
-						}
-					});
+				  algo1.removeNonRelevant();
+//				  algo1.speedDown();
+////				  algo1.goHomeFirst=!algo1.goHomeFirst;
+//				  algo1.spinBy((360-(int)algo1.drone.getGyroRotation())+algo1.drone.getOpticalSensorLocation().getAngle(algo1.getLastPoint()), true, new Func() {
+//						@Override
+//						public void method() {
+//							try {
+//								Thread.sleep(1000);
+//							} catch (InterruptedException interruptedException) {
+//								interruptedException.printStackTrace();
+//							}
+//							algo1.speedUp();
+//						}
+//					});
 			  }
 		});
 		returnBtn.setBounds(screenSize.width-250, 350, 120, 30);

@@ -2,6 +2,8 @@ import com.mxgraph.layout.mxCircleLayout;
 import com.mxgraph.layout.mxIGraphLayout;
 import com.mxgraph.swing.mxGraphComponent;
 import org.jgrapht.*;
+import org.jgrapht.alg.shortestpath.BFSShortestPath;
+import org.jgrapht.alg.shortestpath.DijkstraShortestPath;
 import org.jgrapht.alg.spanning.*;
 import org.jgrapht.ext.JGraphXAdapter;
 import org.jgrapht.graph.*;
@@ -27,7 +29,7 @@ public class Graph {
         }
         g.addVertex(name);
         if(last_vertex != null) 
-        	g.addEdge(last_vertex, name);
+        	g.addEdge(name,last_vertex);
         //graph.addVertex(name);
     }
     
@@ -78,6 +80,21 @@ public class Graph {
         System.out.println(k.getSpanningTree().toString());
         //KruskalMinimumSpanningTree k1=new KruskalMinimumSpanningTree(graph);
         //System.out.println(k1.getEdgeSet().toString());   
+    }
+    public void shortestPath(Point s,Point d){
+//        System.out.println(g.vertexSet());
+//        System.out.println(g.edgeSet());
+//        System.out.println(g);
+//        System.out.println(s);
+//        System.out.println(d);
+        var path = new BFSShortestPath(g);
+        var p =path.getPath(s,d);
+//        System.out.println(p);
+//        System.out.println(p.getClass());
+//        var path2=new DijkstraShortestPath(g);
+//        var p2=path2.getPath(s, d);
+//        System.out.println(p2);
+//        System.out.println(BFSShortestPath.findPathBetween(g, s, d));
     }
 
     /*public void getSpanningTreeCost() {

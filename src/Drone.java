@@ -57,7 +57,15 @@ public class Drone {
 		double y = startPoint.y + pointFromStart.y;
 		return new Point(x,y);
 	}
-	
+
+	public double getSpeed() {
+		return speed;
+	}
+
+	public void setSpeed(double speed) {
+		this.speed = speed;
+	}
+
 	public void update(int deltaTime) {
 
 		double distancedMoved = (speed*100)*((double)deltaTime/1000);
@@ -123,8 +131,8 @@ public class Drone {
 	
 	public void slowDown(int deltaTime) {
 		speed -= (WorldParams.accelerate_per_second*deltaTime/1000);
-		if(speed < 0) {
-			speed = 0;
+		if(speed < 0.1) {
+			speed = 0.1;
 		}
 	}
 	
