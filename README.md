@@ -5,9 +5,12 @@ We add a little bit noise to each sample to make it more realistic approach.
 Basic API with real-time info and also manual controlling.
 We also implemented kind of area mapping when the drone fly.
 This project written in Java.
+
 Improving the return home ability:
-when the the drone is tring to return home it fllow the points it created to the start point (which is the home)
+when the the drone is tring to return home it is following the points that created all the way until it reach the start point (which is the home)
 if the drone recognize that the points it created creat a loop, so the unnecessary points(loop) remove from the points set and creating "shortcut" to the drone.
+When the dorne's battrey reach 50% ( after 4 minutes) the drone will return home anyway.
+When the drone returned home a note about that will pop up and the drone will stop. 
 
 
 ## Getting Started
