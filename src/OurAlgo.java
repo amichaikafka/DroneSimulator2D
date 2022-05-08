@@ -65,7 +65,7 @@ public class OurAlgo {
 		updateMapByLidars();
 
 		ai(deltaTime);
-		if(start!=0&&getTime()==4){
+		if(!SimulationWindow.return_home&&start!=0&&getTime()==4){
 			System.out.println(getTime());
 			SimulationWindow.return_home=true;
 			SimulationWindow.backHome=false;
